@@ -1,0 +1,19 @@
+
+.flex-container{
+    width: 100%;
+    justify-content: center;
+    padding-top: 80px;
+    display: flex;
+   /* background-color: chocolate; */
+}
+#questions{
+    flex-direction: column;
+    width: 20%;
+    padding-top: 20px;
+    /* background-color: chartreuse; */
+    margin-left: 600px;
+    margin-top: 10px;
+}
+#button{
+    margin-left: 600px
+}
