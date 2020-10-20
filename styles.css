@@ -15,5 +15,7 @@
     margin-top: 10px;
 }
 #button{
-    margin-left: 600px
+    margin-left: 200px;
+    justify-self: center;
+    margin-right: 100px;
 }
