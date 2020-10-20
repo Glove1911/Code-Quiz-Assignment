@@ -16,21 +16,47 @@
             <a class="nav-link active" href="#">View High Scores</a>
         </li>
         <li class="nav-item ml-auto px-5">
-            <a class="nav-link" href="#">Timer:<span id = "timer"></span></a>
+            <nav class="nav-link" href="#">Timer:<span id="timer"></span></nav>
         </li>
     </ul>
-    <main class="flex-container">
-        <h1>Coding Quiz</h1>
-        
-    </main>
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-sm">
+            One of three columns
+          </div> -->
+            <div class="col-md-7 ml-auto pr-5 pt-5">
+                <h1>Coding Quiz</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-9 ml-auto pr-5">
+                <p>Try to answer the following code-related questions within the limit.
+                    Keep in mind that incorrect answers will penalize your score
+                    time by 15 seconds</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 pr-5">
+                    <form>
+                        <button id="button">Start Quiz</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <div id="questions">
-        <h5 id="quiz" Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt laudantium quas, nulla eos
-            molestiae reiciendis optio amet cum perspiciatis dolorum illum quia repellendus nobis reprehenderit eveniet
-            cupiditate atque enim quae.></h5>
+        <ol id = "ordered-list">
+
+        </ol>
+
     </div>
     <form>
-        <button id="button">Start Quiz</button>
+        <!-- <button id="button">Start Quiz</button> -->
     </form>
+
 
 
     <script src="./script.js"></script>
