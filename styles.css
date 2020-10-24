@@ -6,7 +6,7 @@
     display: flex;
    /* background-color: chocolate; */
 }
-#questions{
+#questions, #response {
     flex-direction: column;
     width: 20%;
     padding-top: 20px;
@@ -19,3 +19,31 @@
     justify-self: center;
     margin-right: 100px;
 }
+
+#response{
+    display: block;
+    margin: auto;
+    color: red;
+    justify-content: center;
+}
+body{
+    background-color: black;
+}
+h3 {
+    color: white;
+}
+
+.choiceButtons{
+    margin-top: 15px;
+    background-color: blue;
+    font-family: fantasy;
+}
+.questFont{
+    font-size: 25px;
+    font-family: fantasy;
+}
+
+.text-box{
+    margin-left: auto;
+}
+
