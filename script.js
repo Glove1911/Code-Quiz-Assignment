@@ -7,9 +7,11 @@ var listEl = document.querySelector("#ordered-list");
 var navEl = document.querySelector(".nav-link");
 var formEl = document.querySelectorAll("#input-form");
 var bodyEl  = document.querySelector("#body");
-
 var responseEl = document.querySelector("#response");
+var btn2  = document.querySelectorAll(".submit-button");
 var score = 0;
+var highDiv = document.querySelector("#high");
+var highScore = document.querySelectorAll("high-score");
 
 
 var questionArr = [{
@@ -19,19 +21,19 @@ var questionArr = [{
 },
 {
     title: "Where is the correct place to insert a JavaScript?",
-    choices: ["The <head> section", "The <body> section", "Both the <head> and <body> section"],
+    choices: ["The <head> section", "The <body> section", "Both the <head> and <body> section", "The <script> section"],
     answer: "The <body> section",
 },
 
 {
     title: "How do you create a function in javascript?",
-    choices: ["function myFunction()", "function = myFunction()", "function:myFunction"],
+    choices: ["function myFunction()", "function = myFunction()", "function:myFunction", "Hey Funtion...you there?"],
     answer: "function myFunction()",
 },
 
 {
     title: "How do you call a function name 'myFunction()'",
-    choices: ["myFunction()", "call function myFunction", "call myFunction"],
+    choices: ["myFunction()", "call function myFunction", "call myFunction", "disFunction"],
     answer: "myFunction()",
 },]
 
@@ -59,9 +61,10 @@ nextEl.addEventListener("click", function (event) {
 
 });
 
- 
+questionEl.setAttribute("class", "text-white mb-5 questFont");
+
 function displayQuestions() {
-    
+   
     questionEl.textContent = questionArr[i].title;
     var Choice1 = questionArr[i].choices[0];
     var Choice2 = questionArr[i].choices[1];
@@ -109,8 +112,7 @@ function displayQuestions() {
 
 }
 
-function compareAnswers(event) {
-    console.log(event.target);
+function compareAnswers(event) {    
     var correctAnswer = event.target.textContent;
     if (correctAnswer === questionArr[i].answer) {
         responseEl.style.color = "green";
@@ -126,27 +128,55 @@ function compareAnswers(event) {
         setTimer-=15;
 
         
-// if (i >= questionArr.length ) 
+
         
     }
     i++
     if (setTimer === 0 || i >= questionArr.length ) {
-        clearInterval(setTimer);
+    
         gameOver();
+       
     }
     
         else {
             displayQuestions();
         }        
         
-
-        function gameOver(){
-            bodyEl.display= "none";
-            questionEl.textContent= ("Game Over.  You scored " + score + "/100"); 
-            
-            
-
-        }
+      
         
+        function gameOver(){
+            stopTimer();
+            mainEl.display= "none";
+            questionEl.textContent= ("Game Over.  You scored " + score + "/100"); 
+            var saveScore = document.createElement("p");
+            var inputBox = document.createElement("input");
+            var btn2 = document.createElement("button");
+            btn2.setAttribute("class", "submit-button btn btn-primary ml-2 justify-self-center");
+            responseEl.textContent = "";
+            responseEl.appendChild(saveScore);
+            saveScore.textContent = "Enter your Initials to save score";
+            saveScore.setAttribute("class", "text-box text-primary");
+            responseEl.appendChild(inputBox);
+            responseEl.appendChild(btn2);
+            btn2.textContent = "Submit"; 
+    
+
+        btn2.addEventListener("click", function(){
+            localStorage.setItem("Score", score);
+            localStorage.setItem("name",inputBox.value);
+            inputBox.value ="";
+        
+        });
+
+        
+
+    }
+    
+
+    }
+        function stopTimer(){
+            clearInterval(timer);
+
+       
 }
 
