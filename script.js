@@ -6,14 +6,14 @@ var mainEl = document.querySelector(".container");
 var listEl = document.querySelector("#ordered-list");
 var navEl = document.querySelector(".nav-link");
 var formEl = document.querySelectorAll("#input-form");
-var bodyEl  = document.querySelector("#body");
+var bodyEl = document.querySelector("#body");
 var responseEl = document.querySelector("#response");
-var btn2  = document.querySelectorAll(".submit-button");
+var btn2 = document.querySelectorAll(".submit-button");
 var score = 0;
 var highDiv = document.querySelector("#high");
 var highScore = document.querySelectorAll("high-score");
 
-
+// Object within Array for Quiz Questions, choices, and answers
 var questionArr = [{
     title: "Inside which HTML element do we put the JavaScript?",
     choices: ["<js>", "<javascript>", "<script>", "<scripting>"],
@@ -62,16 +62,16 @@ nextEl.addEventListener("click", function (event) {
 });
 
 questionEl.setAttribute("class", "text-white mb-5 questFont");
-
+// Function to generate questions and multiple choice options
 function displayQuestions() {
-   
+
     questionEl.textContent = questionArr[i].title;
     var Choice1 = questionArr[i].choices[0];
     var Choice2 = questionArr[i].choices[1];
     var Choice3 = questionArr[i].choices[2];
-    var Choice4 = questionArr[i].choices[3];  
-   listEl.textContent = "";
-   
+    var Choice4 = questionArr[i].choices[3];
+    listEl.textContent = "";
+
 
     var liTag1 = document.createElement("li");
     var btn = document.createElement("button");
@@ -108,75 +108,75 @@ function displayQuestions() {
     listEl.appendChild(liTag4);
     questionEl.appendChild(listEl);
     btn4.textContent = Choice4;
-    
+
 
 }
-
-function compareAnswers(event) {    
+// Comparing user answers to correct answers
+function compareAnswers(event) {
     var correctAnswer = event.target.textContent;
     if (correctAnswer === questionArr[i].answer) {
         responseEl.style.color = "green";
         responseEl.textContent = "Correct";
-        score+=25;
+        score += 25;
         console.log(score);
-        
+
     }
     else {
 
         responseEl.style.color = "red";
         responseEl.textContent = "Incorrect";
-        setTimer-=15;
+        setTimer -= 15;
 
-        
 
-        
+
+
     }
     i++
-    if (setTimer === 0 || i >= questionArr.length ) {
-    
-        gameOver();
-       
-    }
-    
-        else {
-            displayQuestions();
-        }        
-        
-      
-        
-        function gameOver(){
-            stopTimer();
-            mainEl.display= "none";
-            questionEl.textContent= ("Game Over.  You scored " + score + "/100"); 
-            var saveScore = document.createElement("p");
-            var inputBox = document.createElement("input");
-            var btn2 = document.createElement("button");
-            btn2.setAttribute("class", "submit-button btn btn-primary ml-2 justify-self-center");
-            responseEl.textContent = "";
-            responseEl.appendChild(saveScore);
-            saveScore.textContent = "Enter your Initials to save score";
-            saveScore.setAttribute("class", "text-box text-primary");
-            responseEl.appendChild(inputBox);
-            responseEl.appendChild(btn2);
-            btn2.textContent = "Submit"; 
-    
+    if (setTimer === 0 || i >= questionArr.length) {
 
-        btn2.addEventListener("click", function(){
+        gameOver();
+
+    }
+
+    else {
+        displayQuestions();
+    }
+
+
+
+    function gameOver() {
+        stopTimer();
+        mainEl.display = "none";
+        questionEl.textContent = ("Game Over.  You scored " + score + "/100");
+        var saveScore = document.createElement("p");
+        var inputBox = document.createElement("input");
+        var btn2 = document.createElement("button");
+        btn2.setAttribute("class", "submit-button btn btn-primary ml-2 justify-self-center");
+        responseEl.textContent = "";
+        responseEl.appendChild(saveScore);
+        saveScore.textContent = "Enter your Initials to save score";
+        saveScore.setAttribute("class", "text-box text-primary");
+        responseEl.appendChild(inputBox);
+        responseEl.appendChild(btn2);
+        btn2.textContent = "Submit";
+
+        // Event to save Initals and score to local storage
+        btn2.addEventListener("click", function () {
             localStorage.setItem("Score", score);
-            localStorage.setItem("name",inputBox.value);
-            inputBox.value ="";
-        
+            localStorage.setItem("name", inputBox.value);
+            inputBox.value = "";
+
         });
 
-        
+
 
     }
-    
 
-    }
-        function stopTimer(){
-            clearInterval(timer);
 
-       
+}
+function stopTimer() {
+    clearInterval(timer);
+
+
 }
 
