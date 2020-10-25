@@ -6,7 +6,7 @@
     display: flex;
    /* background-color: chocolate; */
 }
-#questions, #response {
+#questions, #response , #view-high-button {
     flex-direction: column;
     width: 20%;
     padding-top: 20px;
@@ -20,12 +20,7 @@
     margin-right: 100px;
 }
 
-#response{
-    display: block;
-    margin: auto;
-    color: red;
-    justify-content: center;
-}
+
 body{
     background-color: black;
 }
@@ -47,3 +42,6 @@ h3 {
     margin-left: auto;
 }
 
+.score{
+    margin-left: 20px;
+}
