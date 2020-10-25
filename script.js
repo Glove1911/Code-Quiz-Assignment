@@ -11,7 +11,9 @@ var responseEl = document.querySelector("#response");
 var btn2 = document.querySelectorAll(".submit-button");
 var score = 0;
 var highDiv = document.querySelector("#high");
-var highScore = document.querySelectorAll("high-score");
+var highScore = document.querySelector(".high-score");
+var againEl = document.querySelector("#view-high-button");
+
 
 // Object within Array for Quiz Questions, choices, and answers
 var questionArr = [{
@@ -36,35 +38,75 @@ var questionArr = [{
     choices: ["myFunction()", "call function myFunction", "call myFunction", "disFunction"],
     answer: "myFunction()",
 },]
-
+var timer;
 var setTimer = 61;
 var i = 0;
 function timerSet() {
-    var timer = setInterval(function () {
+    timer = setInterval(function () {
         setTimer--;
         timerEl.textContent = setTimer;
 
         if (setTimer === 0) {
             clearInterval(timer);
-
+            gameOver();
 
         }
     }, 1000);
 }
 
-nextEl.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.target === nextEl
-    mainEl.style.display = "none";
-    timerSet();
-    displayQuestions();
+function gameOver() {
 
-});
+    questionEl.textContent = ("Game Over.  You scored " + score + "/100");
+    var saveScore = document.createElement("p");
+    var inputBox = document.createElement("input");
+    var btn2 = document.createElement("button");
+    btn2.setAttribute("class", "submit-button btn btn-primary ml-2 justify-self-center");
+    responseEl.textContent = "";
+    responseEl.appendChild(saveScore);
+    saveScore.textContent = "Enter your initials to save score";
+    saveScore.setAttribute("class", "text-box text-primary");
+    responseEl.appendChild(inputBox);
+    responseEl.appendChild(btn2);
+    btn2.textContent = "Submit";
 
-questionEl.setAttribute("class", "text-white mb-5 questFont");
+    var btn3 = document.createElement("button")
+    btn3.setAttribute("class", "submit-button btn btn-primary ml-2 justify-self-center");
+    againEl.appendChild(btn3);
+    btn3.textContent = "Play Again";
+    btn3.addEventListener("click", function () {
+        pageReload();
+
+
+    });
+
+
+    // Event to save Initals and score to local storage
+    btn2.addEventListener("click", function () {
+        localStorage.setItem("Score", score);
+        localStorage.setItem("name", inputBox.value);
+        inputBox.value = "";
+        questionEl.innerHTML = "";
+        responseEl.innerHTML = "";
+
+    });
+    highScore.addEventListener("click", function () {
+        var score = localStorage.getItem("Score");
+        var name = localStorage.getItem("name");
+        highDiv.append(name);
+        highDiv.append(" ", score);
+        highDiv.setAttribute("class", "score text-primary");
+
+    });
+
+
+}
+function pageReload() {
+    location.reload();
+}
+
 // Function to generate questions and multiple choice options
 function displayQuestions() {
-
+    questionEl.setAttribute("class", "text-white mb-5 questFont");
     questionEl.textContent = questionArr[i].title;
     var Choice1 = questionArr[i].choices[0];
     var Choice2 = questionArr[i].choices[1];
@@ -111,6 +153,18 @@ function displayQuestions() {
 
 
 }
+
+
+nextEl.addEventListener("click", function (event) {
+    event.preventDefault();
+    event.target === nextEl
+    mainEl.style.display = "none";
+    timerSet();
+    displayQuestions();
+
+});
+
+
 // Comparing user answers to correct answers
 function compareAnswers(event) {
     var correctAnswer = event.target.textContent;
@@ -118,7 +172,7 @@ function compareAnswers(event) {
         responseEl.style.color = "green";
         responseEl.textContent = "Correct";
         score += 25;
-        console.log(score);
+
 
     }
     else {
@@ -132,8 +186,8 @@ function compareAnswers(event) {
 
     }
     i++
-    if (setTimer === 0 || i >= questionArr.length) {
-
+    if (i >= questionArr.length) {
+        stopTimer();
         gameOver();
 
     }
@@ -144,38 +198,13 @@ function compareAnswers(event) {
 
 
 
-    function gameOver() {
-        stopTimer();
-        mainEl.display = "none";
-        questionEl.textContent = ("Game Over.  You scored " + score + "/100");
-        var saveScore = document.createElement("p");
-        var inputBox = document.createElement("input");
-        var btn2 = document.createElement("button");
-        btn2.setAttribute("class", "submit-button btn btn-primary ml-2 justify-self-center");
-        responseEl.textContent = "";
-        responseEl.appendChild(saveScore);
-        saveScore.textContent = "Enter your Initials to save score";
-        saveScore.setAttribute("class", "text-box text-primary");
-        responseEl.appendChild(inputBox);
-        responseEl.appendChild(btn2);
-        btn2.textContent = "Submit";
 
-        // Event to save Initals and score to local storage
-        btn2.addEventListener("click", function () {
-            localStorage.setItem("Score", score);
-            localStorage.setItem("name", inputBox.value);
-            inputBox.value = "";
-
-        });
-
-
-
-    }
 
 
 }
 function stopTimer() {
     clearInterval(timer);
+
 
 
 }
