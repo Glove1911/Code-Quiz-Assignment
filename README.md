@@ -10,4 +10,4 @@ This project has been deployed to Github Pages.  To run, follow the deployment l
 
 [Deployed Appication](https://glove1911.github.io/Code-Quiz-Assignment/)
 
-<img src=
+<img src="https://github.com/Glove1911/Code-Quiz-Assignment/blob/main/Images/F15FA58C-7D27-4B7D-BE30-8B5DC19C1ED0_1_105_c.jpeg">
