@@ -7,4 +7,5 @@ This applicaion runs in the browser and features dynamically updated HTML and CS
 
 # Getting Started
 This project has been deployed to Github Pages.  To run, follow the deployment link below. 
-[Deployed Appication]
+
+[Deployed Appication](https://glove1911.github.io/Code-Quiz-Assignment/)
